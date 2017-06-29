@@ -1,10 +1,10 @@
 package nl.rabobank.personenbeheer;
 
-        import java.text.CollationKey;
-        import java.time.LocalDate;
-        import java.util.*;
+import java.text.CollationKey;
+import java.time.LocalDate;
+import java.util.*;
 
-        import static java.util.Collections.sort;
+import static java.util.Collections.sort;
 
 public class Persoon implements Comparable {
 
@@ -33,12 +33,10 @@ public class Persoon implements Comparable {
     private LocalDate geboorteDat;
     private String geboorteplaatsNaam;
     private String gemeenteNaam;
-    public static List<Persoon> personen = new ArrayList();
 
 
     public Persoon(String achterNaam, LocalDate geboorteDat) {
-//        this.id = id;
-        this.id = bepaalMaxId();
+        this.id = PersonenInvoer.bepaalMaxId();
         this.achterNaam = achterNaam;
         this.geboorteDat = geboorteDat;
     }
@@ -69,37 +67,6 @@ public class Persoon implements Comparable {
 
     public void setGeboorteDat(int klant_gebjaar, int klant_gebmaand, int klant_gebdag) {
         this.geboorteDat = LocalDate.of(klant_gebjaar, klant_gebmaand, klant_gebdag);
-    }
-
-
-    public Persoon addPersoon(Persoon persoon) {
-//        this.id=bepaalMaxId();
-        if (persoon != null) {
-            personen.add(persoon);
-        }
-        return persoon;
-    }
-
-    public int bepaalMaxId() {
-        int maxid = 0;
-
-        for (Persoon persoon : personen) {
-            if (maxid <= id) {
-                maxid = ++id;
-            }
-        }
-        return maxid;
-    }
-
-    public static List<Persoon> sortByAchterNaamAscending(List<Persoon> personen) {
-        List<Persoon> list = new ArrayList<>(personen);
-        sort(personen, new Comparator<Persoon>() {
-            @Override
-            public int compare(Persoon persoon1, Persoon persoon2) {
-                return persoon1.getAchterNaam().compareTo(persoon2.getAchterNaam());
-            }
-        });
-        return list;
     }
 
     @Override
