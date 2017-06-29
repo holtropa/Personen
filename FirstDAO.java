@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FirstDAO extends GenericDAO<First> {
+public class FirstDAO extends GenericDAO {//GenericDAO<First> {
 
     public FirstDAO(Connection con) {
         super(con, TABLENAME);

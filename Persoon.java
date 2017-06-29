@@ -33,12 +33,12 @@ public class Persoon implements Comparable {
     private LocalDate geboorteDat;
     private String geboorteplaatsNaam;
     private String gemeenteNaam;
-    private List<Persoon> personen = new ArrayList();
+    public static List<Persoon> personen = new ArrayList();
 
 
     public Persoon(String achterNaam, LocalDate geboorteDat) {
 //        this.id = id;
-
+        this.id = bepaalMaxId();
         this.achterNaam = achterNaam;
         this.geboorteDat = geboorteDat;
     }
@@ -59,7 +59,7 @@ public class Persoon implements Comparable {
         return geboorteDat;
     }
 
-    public void setId() {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -73,19 +73,19 @@ public class Persoon implements Comparable {
 
 
     public Persoon addPersoon(Persoon persoon) {
-        this.id=bepaalMaxId();
+//        this.id=bepaalMaxId();
         if (persoon != null) {
             personen.add(persoon);
         }
         return persoon;
     }
 
-    private int bepaalMaxId() {
+    public int bepaalMaxId() {
         int maxid = 0;
 
         for (Persoon persoon : personen) {
-            if (maxid < id) {
-                maxid = id;
+            if (maxid <= id) {
+                maxid = ++id;
             }
         }
         return maxid;
